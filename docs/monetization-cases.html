@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SYNAPSE Monetization · Three Worked Cases</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a; --ink-soft: #3a3a3a; --ink-mute: #6b6b6b;
+    --paper: #fafaf7; --paper-soft: #f4f3ee; --rule: #e4e2da;
+    --accent: #b8451f; --accent-soft: #d97a4a;
+    --positive: #2d6a4f; --warn: #8b5a00;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.6; font-size: 16px; }
+  .page { max-width: 920px; margin: 0 auto; padding: 80px 32px 96px; }
+
+  .doc-meta {
+    font-family: var(--mono); font-size: 11px; color: var(--ink-mute);
+    letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 500; font-size: 48px;
+    line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px;
+  }
+  .subtitle {
+    font-family: var(--serif); font-style: italic; font-weight: 300;
+    font-size: 20px; color: var(--ink-soft); margin-bottom: 56px;
+    max-width: 640px;
+  }
+  .intro {
+    color: var(--ink-soft); margin-bottom: 56px;
+    padding: 24px; background: var(--paper-soft); border-radius: 6px;
+    border-left: 3px solid var(--accent);
+  }
+
+  .case {
+    margin-bottom: 64px;
+    padding: 36px;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: var(--paper);
+  }
+  .case-num {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--accent); letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .case h2 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 28px; line-height: 1.2; margin-bottom: 12px;
+  }
+  .case-archetype {
+    font-family: var(--mono); font-size: 12px;
+    color: var(--ink-mute); margin-bottom: 24px;
+    letter-spacing: 0.04em;
+  }
+  .case-archetype span {
+    background: var(--paper-soft);
+    padding: 3px 8px; border-radius: 3px;
+    margin-right: 6px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin: 24px 0;
+  }
+  .grid-cell h4 {
+    font-family: var(--sans); font-weight: 600; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--ink-mute); margin-bottom: 8px;
+  }
+  .grid-cell p { color: var(--ink-soft); font-size: 14px; }
+
+  .grid-cell ul {
+    margin: 0 0 0 18px; color: var(--ink-soft); font-size: 14px;
+  }
+  .grid-cell ul li { margin-bottom: 4px; }
+
+  .settlement {
+    display: flex; gap: 24px; flex-wrap: wrap;
+    margin-top: 24px; padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+  .settlement-stat { flex: 1; min-width: 120px; }
+  .settlement-num {
+    font-family: var(--serif); font-weight: 400;
+    font-size: 28px; color: var(--accent);
+    display: block; margin-bottom: 2px;
+  }
+  .settlement-label {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--ink-mute); letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .evidence-note {
+    margin-top: 20px; padding: 14px 18px;
+    background: var(--paper-soft); border-radius: 4px;
+    font-size: 13px; color: var(--ink-soft);
+    font-family: var(--sans);
+  }
+  .evidence-note strong {
+    color: var(--ink); font-weight: 600;
+  }
+  .evidence-note a {
+    color: var(--accent); text-decoration: none;
+    border-bottom: 1px dotted var(--accent);
+    font-family: var(--mono); font-size: 12px;
+  }
+
+  .summary-table {
+    width: 100%; border-collapse: collapse;
+    margin-top: 32px; font-size: 14px;
+  }
+  .summary-table th {
+    text-align: left; font-family: var(--sans); font-weight: 600;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--ink-mute); padding: 12px 14px;
+    border-bottom: 2px solid var(--rule); background: var(--paper-soft);
+  }
+  .summary-table td {
+    padding: 14px; border-bottom: 1px solid var(--rule); color: var(--ink-soft);
+  }
+  .summary-table td strong { color: var(--ink); }
+
+  .footer-meta {
+    margin-top: 64px; padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 11px;
+    color: var(--ink-mute); letter-spacing: 0.04em;
+    display: flex; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+
+  @media (max-width: 640px) {
+    .grid { grid-template-columns: 1fr; }
+    .case { padding: 24px; }
+    h1 { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="doc-meta">SYNAPSE · Monetization Appendix · v0.2.1</div>
+  <h1>Three Worked Cases</h1>
+  <p class="subtitle">Each grounded in real 2026 market evidence. Each producing a different archetype's output. Each settling a different size of value share.</p>
+
+  <div class="intro">
+    <p style="margin-bottom: 0;">A single hand-waved monetization model is what got the v0.1 draft into credibility trouble. The v0.2.1 hardening pass produces three independent worked cases with named buyers, evidenced gaps, and bounded value estimates. The point is not that SYNAPSE captures all three &mdash; the point is that the protocol's economic model is testable with the kind of opportunities a competent Scout would surface in its first 90 days.</p>
+  </div>
+
+  <!-- CASE 1 -->
+  <div class="case">
+    <div class="case-num">Case 01 · Migration vacuum · Small-to-medium</div>
+    <h2>AutoGen Migration Shim</h2>
+    <div class="case-archetype"><span>Archetype: Builder</span><span>Value tier: $11K&ndash;$46K SYNAPSE share</span><span>Cycle length: ~60 days</span></div>
+
+    <div class="grid">
+      <div class="grid-cell">
+        <h4>Buyer</h4>
+        <p>Mid-market engineering teams running AutoGen 0.2 in production who do not want to commit to Microsoft Agent Framework's Azure-flavored rearchitecting or stake their future on the AG2 community fork.</p>
+      </div>
+      <div class="grid-cell">
+        <h4>Offering</h4>
+        <p>OSS thin orchestration layer preserving the AutoGen 0.2 API surface, plus a managed cloud tier at $99&ndash;$149/team/month with hosted state management, observability, and graceful upgrade paths.</p>
+      </div>
+      <div class="grid-cell">
+        <h4>Why they pay</h4>
+        <ul>
+          <li>Avoids a multi-quarter rearchitecting project</li>
+          <li>Preserves an API their team already knows</li>
+          <li>Vendor-neutral (no Azure lock-in)</li>
+          <li>Industry analysis explicitly endorses this option</li>
+        </ul>
+      </div>
+      <div class="grid-cell">
+        <h4>Why not the alternatives</h4>
+        <ul>
+          <li>Microsoft Agent Framework: Azure commitment + graph-rewrite</li>
+          <li>AG2: lifeboat positioning, no enterprise motion</li>
+          <li>CrewAI/LangGraph: different abstraction, not a port</li>
+          <li>DIY: opportunity cost of in-house build</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="settlement">
+      <div class="settlement-stat"><span class="settlement-num">3,200+</span><span class="settlement-label">Production deployments</span></div>
+      <div class="settlement-stat"><span class="settlement-num">$114K</span><span class="settlement-label">Year-1 ARR (3% capture)</span></div>
+      <div class="settlement-stat"><span class="settlement-num">$11,400</span><span class="settlement-label">SYNAPSE share (10%)</span></div>
+      <div class="settlement-stat"><span class="settlement-num">+1</span><span class="settlement-label">Builder archetype shipped</span></div>
+    </div>
+
+    <div class="evidence-note">
+      <strong>Evidence anchor:</strong> See Operating Log Entry #01 for the live opportunity report. Primary source: <a href="https://agentmarketcap.ai/blog/2026/04/13/microsoft-autogen-maintenance-mode-agent-framework-sunset-2026" target="_blank" rel="noopener noreferrer">agentmarketcap.ai (2026-04-13)</a> &middot; 5 independent signals.
+    </div>
+  </div>
+
+  <!-- CASE 2 -->
+  <div class="case">
+    <div class="case-num">Case 02 · Regulatory deadline · Mid-tier</div>
+    <h2>EU AI Act SME Compliance Co-Pilot</h2>
+    <div class="case-archetype"><span>Archetype: Researcher + Builder</span><span>Value tier: $45K&ndash;$180K SYNAPSE share</span><span>Cycle length: ~90 days</span></div>
+
+    <div class="grid">
+      <div class="grid-cell">
+        <h4>Buyer</h4>
+        <p>European SMEs deploying AI in high-risk categories who face the 2026-08-02 enforcement deadline and do not have in-house compliance counsel. The European DIGITAL SME Alliance has explicitly called the deadline a "missed deadlines, missing standards" crisis.</p>
+      </div>
+      <div class="grid-cell">
+        <h4>Offering</h4>
+        <p>An AI-Act-specific agentic compliance toolkit: continuously updated risk classifier, automated documentation generator, conformity-assessment workflow, and a human-attorney handoff for edge cases. SaaS at &euro;299&ndash;&euro;599/month per high-risk system.</p>
+      </div>
+      <div class="grid-cell">
+        <h4>Why they pay</h4>
+        <ul>
+          <li>Enforcement deadline is fixed and dated</li>
+          <li>SMEs cannot afford Big-Four compliance retainers</li>
+          <li>Standards (harmonized norms) are still incomplete &mdash; agentic interpretation is the only path</li>
+          <li>Failure to comply: fines up to 7% of global revenue</li>
+        </ul>
+      </div>
+      <div class="grid-cell">
+        <h4>Why not the alternatives</h4>
+        <ul>
+          <li>Big-Four: priced for enterprise (&euro;50K+ minimums)</li>
+          <li>DIY interpretation: requires legal staff SMEs don't have</li>
+          <li>Static checklists: don't track amendments or guidance</li>
+          <li>Doing nothing: regulatory exposure</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="settlement">
+      <div class="settlement-stat"><span class="settlement-num">2026-08-02</span><span class="settlement-label">Enforcement deadline</span></div>
+      <div class="settlement-stat"><span class="settlement-num">$450K</span><span class="settlement-label">Year-1 ARR (300 SMEs)</span></div>
+      <div class="settlement-stat"><span class="settlement-num">$45,000</span><span class="settlement-label">SYNAPSE share (10%)</span></div>
+      <div class="settlement-stat"><span class="settlement-num">+2</span><span class="settlement-label">Archetypes shipped</span></div>
+    </div>
+
+    <div class="evidence-note">
+      <strong>Evidence anchor:</strong> AI Act Service Desk timeline confirms 2026-08-02 high-risk enforcement deadline &middot; Cloud Security Alliance research (<a href="https://labs.cloudsecurityalliance.org/research/csa-research-note-eu-ai-act-high-risk-compliance-deadline-20/" target="_blank" rel="noopener noreferrer">2026-03-14</a>) confirms the Enterprise Readiness Gap &middot; ClearAct (<a href="https://clearact.net/en/articles/eu-ai-act-crisis-missed-deadlines-missing-standards-february-2026" target="_blank" rel="noopener noreferrer">2026-03-01</a>) characterizes the SME situation as a crisis.
+    </div>
+  </div>
+
+  <!-- CASE 3 -->
+  <div class="case">
+    <div class="case-num">Case 03 · Substrate gap · Larger</div>
+    <h2>The Production-Grade Agent Observability Stack</h2>
+    <div class="case-archetype"><span>Archetype: Builder + Optimizer</span><span>Value tier: $120K&ndash;$500K SYNAPSE share</span><span>Cycle length: ~120 days</span></div>
+
+    <div class="grid">
+      <div class="grid-cell">
+        <h4>Buyer</h4>
+        <p>Engineering organizations whose agent pilots have crossed into production and now confront the Gartner statistic: 40%+ of agentic AI projects will be cancelled by 2027 &mdash; primarily due to lack of production infrastructure. The pain has been crystallized in named industry essays during Feb&ndash;Mar 2026.</p>
+      </div>
+      <div class="grid-cell">
+        <h4>Offering</h4>
+        <p>Agent-native observability + cost-tracking + eval-running infrastructure. Not a framework; a substrate. Deploys alongside any orchestration layer (LangGraph, CrewAI, custom). Enterprise pricing: $24K&ndash;$120K/year per organization.</p>
+      </div>
+      <div class="grid-cell">
+        <h4>Why they pay</h4>
+        <ul>
+          <li>Production failures are unobservable today</li>
+          <li>Costs are unpredictable without per-step tracking</li>
+          <li>Evals are ad-hoc, not continuous</li>
+          <li>"95% of generative AI pilots fail to deliver measurable ROI" &mdash; MIT-cited stat</li>
+        </ul>
+      </div>
+      <div class="grid-cell">
+        <h4>Why not the alternatives</h4>
+        <ul>
+          <li>LangSmith: framework-bound to LangGraph</li>
+          <li>DataDog: not agent-aware (token costs, tool traces, agent identity)</li>
+          <li>Roll-your-own: 6-month build minimum</li>
+          <li>Vendor-coupled offerings: lock-in</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="settlement">
+      <div class="settlement-stat"><span class="settlement-num">40%</span><span class="settlement-label">Projects cancelled by 2027 (Gartner)</span></div>
+      <div class="settlement-stat"><span class="settlement-num">$1.2M</span><span class="settlement-label">Year-1 ARR (20 enterprise contracts)</span></div>
+      <div class="settlement-stat"><span class="settlement-num">$120,000</span><span class="settlement-label">SYNAPSE share (10%)</span></div>
+      <div class="settlement-stat"><span class="settlement-num">+2</span><span class="settlement-label">Archetypes + procedural memory</span></div>
+    </div>
+
+    <div class="evidence-note">
+      <strong>Evidence anchor:</strong> Three independent essays naming this gap in Feb&ndash;Mar 2026: <a href="https://www.distributedthoughts.org/2026-02-05-agentic-ai-infrastructure-gap/" target="_blank" rel="noopener noreferrer">distributedthoughts.org (2026-02-05)</a>, <a href="https://agenticraft.ai/blog/frameworks-vs-infrastructure/" target="_blank" rel="noopener noreferrer">agenticraft.ai (2026-02-17)</a>, <a href="https://dev.to/deiu/the-three-things-wrong-with-ai-agents-in-2026-492m" target="_blank" rel="noopener noreferrer">dev.to (2026-03-13)</a> &middot; Gartner cancellation stat is publicly cited.
+    </div>
+  </div>
+
+  <!-- SUMMARY TABLE -->
+  <h2 style="font-family: var(--serif); font-weight: 500; font-size: 28px; margin: 40px 0 16px;">Summary</h2>
+  <p style="color: var(--ink-soft); margin-bottom: 16px;">Three independent opportunities. Three settled value shares. Three different archetypes deployed. A demonstration that SYNAPSE's economic model is not a single hand-wave but a generator.</p>
+
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th style="width: 26%;">Case</th>
+        <th style="width: 22%;">Archetype</th>
+        <th style="width: 18%;">Year-1 ARR</th>
+        <th>SYNAPSE share (10%)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>01 · AutoGen Migration Shim</strong></td>
+        <td>Builder</td>
+        <td>$114K</td>
+        <td>$11,400</td>
+      </tr>
+      <tr>
+        <td><strong>02 · EU AI Act SME Co-Pilot</strong></td>
+        <td>Researcher + Builder</td>
+        <td>$450K</td>
+        <td>$45,000</td>
+      </tr>
+      <tr>
+        <td><strong>03 · Agent Observability Substrate</strong></td>
+        <td>Builder + Optimizer</td>
+        <td>$1.2M</td>
+        <td>$120,000</td>
+      </tr>
+      <tr style="background: var(--paper-soft);">
+        <td><strong>Total across 3 cycles</strong></td>
+        <td>5 archetypes deployed</td>
+        <td><strong>$1.76M</strong></td>
+        <td><strong>$176,400</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="margin-top: 32px; color: var(--ink-mute); font-size: 14px;">All three cases are independently sourced from real 2026 reporting. The thesis is that a population of agents running this kind of cycle repeatedly &mdash; with each cycle improving the agents handling the next &mdash; produces non-linear aggregation. Three cases is a generator, not a proof; ninety days of operating evidence is what settles it.</p>
+
+  <div class="footer-meta">
+    <span>SYNAPSE Monetization Appendix &middot; v0.2.1 &middot; Three Worked Cases</span>
+    <span>2026-05-15</span>
+  </div>
+
+</div>
+</body>
+</html>
